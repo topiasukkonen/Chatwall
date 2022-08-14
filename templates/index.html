@@ -1,0 +1,38 @@
+<html>
+   <head>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+    <body>
+        <h1 id="mainHeader">Chatwall</h1>
+        <div id="subjectsCont">
+            <p style="text-align: left; margin-left:10px;font-size: 16px">Topics: {{ count }}</p>
+
+            <hr style="border-color: rgba(0,0,0,0.1);">
+
+            {% for message in messages %}
+            <a class="messageBlock" href="/message/{{message[3]}}" style="text-decoration: none;">
+                <p style="font-size: 16px; color: black;">{{ message[4] }}</p>
+                <p>
+                <i style="font-size: 12px; color: gray;">Creator {{ message[1] }} •</i>
+                <i style="font-size: 12px; color: gray;">Time {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}</i> 
+            
+                <hr style="border-color: rgba(0,0,0,0.1);">
+            </a>
+
+            {% endfor %}
+
+            {% if session.user_id %}
+            Logged in
+            <a href="/new">Create topic</a> | <a href="/logout">Log out</a>
+            {% else %}
+
+        </div>
+        <div class="loginCont" style="margin: auto; margin-top: 50px;">
+            <center>
+                <a class="button2" href="/login">Log in</a>
+            </center>
+        </div>
+        {% endif %}
+
+    </body>
+</html>  

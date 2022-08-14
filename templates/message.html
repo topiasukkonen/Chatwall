@@ -1,0 +1,57 @@
+<html>
+   <head>
+        <link rel="stylesheet" href="/styles/style.css">
+    </head>
+    <body>
+        <div id="subjectsCont">
+            <h1 id="mainHeader" style="font-size: 30px;">{{message[id-7].topic}}</h1>
+            <p style="text-align: center; margin-left:10px;font-size: 20px">{{ message[id-7].content }}</p>
+            <hr style="border-color: rgba(0,0,0,0.4);">
+
+            {% for answe in answer %}
+                {% if answe.topic==message[id-7].topic %}
+                    <a class="messageBlock" style="text-decoration: none;">
+                        <p style="font-size: 16px; color: black;">{{ answe[0] }}</p>
+                        <p>
+                        <i style="font-size: 12px; color: gray;">Creator {{ answe[4] }} •</i>
+                        <i style="font-size: 12px; color: gray;">Time {{ answe.sent_at.strftime("%Y-%m-%d %H:%M:%S") }}</i>                  
+                        <hr style="border-color: rgba(0,0,0,0.1);">
+                    </a>
+                {% endif %}
+            {% endfor %}
+            {% if session.user_id %}
+            Logged in
+            <button onclick="changeVisibility()">Comment</button> | <a href="/logout">Log out</a>
+            {% else %}
+
+        </div>
+
+        <div class="loginCont" style="margin: auto; margin-top: 50px;">
+            <center>
+                <a class="button2" href="/login">Log in to comment</a>
+            </center>
+        </div>
+        {% endif %}
+
+        <div id="commentBox" style="bottom: 0px; visibility:hidden; padding-top: 10px; height: 0px;">
+            <form action="/send1" method="post">
+                <textarea name="content"></textarea>
+                <input type="hidden" name="topic" value={{message[id-7].topic}}>
+                <input type="submit" value="send">
+            </form>
+        </div>
+    </body>
+    <script>
+        commentBox = document.getElementById("commentBox")
+        changeVisibility = () => {
+            currVis = commentBox.style.getPropertyValue("visibility")
+            if (currVis == "hidden") {
+                commentBox.style.setProperty("visibility", "visible")
+                commentBox.style.setProperty("height", "50px")
+            } else {
+                commentBox.style.setProperty("visibility", "hidden")
+                commentBox.style.setProperty("height", "0px")
+            }
+        }
+    </script>
+</html>  
