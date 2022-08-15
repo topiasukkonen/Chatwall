@@ -4,12 +4,12 @@
     </head>
     <body>
         <div id="subjectsCont">
-            <h1 id="mainHeader" style="font-size: 30px;">{{message[id-7].topic}}</h1>
-            <p style="text-align: center; margin-left:10px;font-size: 20px">{{ message[id-7].content }}</p>
+            <h1 id="mainHeader" style="font-size: 30px;">{{message[id-1].topic}}</h1>
+            <p style="text-align: center; margin-left:10px;font-size: 20px">{{ message[id-1].content }}</p>
             <hr style="border-color: rgba(0,0,0,0.4);">
 
             {% for answe in answer %}
-                {% if answe.topic==message[id-7].topic %}
+                {% if answe.topic==message[id-1].topic %}
                     <a class="messageBlock" style="text-decoration: none;">
                         <p style="font-size: 16px; color: black;">{{ answe[0] }}</p>
                         <p>
@@ -36,7 +36,7 @@
         <div id="commentBox" style="bottom: 0px; visibility:hidden; padding-top: 10px; height: 0px;">
             <form action="/send1" method="post">
                 <textarea name="content"></textarea>
-                <input type="hidden" name="topic" value={{message[id-7].topic}}>
+                <input type="hidden" name="topic" value={{message[id-1].topic}}>
                 <input type="submit" value="send">
             </form>
         </div>
